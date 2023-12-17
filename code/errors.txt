@@ -1,33 +1,29 @@
-void Sprite::run()
-{
-    while (s_Window.isOpen())
-    {
-        Event event;
-        while (s_Window.pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-            {
-                s_Window.close();
-            }
-            else if (event.type == Event::Resized)
-            {
-                // Adjust the view to maintain the correct aspect ratio
-                float aspectRatioWindow = static_cast<float>(event.size.width) / static_cast<float>(event.size.height);
-                float aspectRatioImage = static_cast<float>(textureBackground.getSize().x) / static_cast<float>(textureBackground.getSize().y);
-
-                if (aspectRatioWindow > aspectRatioImage)
-                {
-                    // Window is wider than the image, adjust height
-                    float newHeight = static_cast<float>(event.size.width) / aspectRatioImage;
-                    View view(FloatRect(0, 0, static_cast<float>(event.size.width), newHeight));
-                    s_Window.setView(view);
-                }
-                else
-                {
-                    // Window is taller than the image, adjust width
-                    float newWidth = static_cast<float>(event.size.height) * aspectRatioImage;
-                    View view(FloatRect(0, 0, newWidth, static_cast<float>(event.size.height)));
-                    s_Window.setView(view);
-                }
-            }
-        }
+g++ -g -Wall -fpermissive -std=c++17 -c -o sprite.o code/sprite.cpp
+code/sprite.cpp: In function ‘int main()’:
+code/sprite.cpp:123:20: error: no matching function for call to ‘sf::RenderWindow::draw(sf::Texture&)’
+  123 |         window.draw(infoBackground);
+      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /usr/include/SFML/Graphics.hpp:45,
+                 from code/sprite.cpp:2:
+/usr/include/SFML/Graphics/RenderTarget.hpp:237:10: note: candidate: ‘void sf::RenderTarget::draw(const sf::Drawable&, const sf::RenderStates&)’
+  237 |     void draw(const Drawable& drawable, const RenderStates& states = RenderStates::Default);
+      |          ^~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:237:31: note:   no known conversion for argument 1 from ‘sf::Texture’ to ‘const sf::Drawable&’
+  237 |     void draw(const Drawable& drawable, const RenderStates& states = RenderStates::Default);
+      |               ~~~~~~~~~~~~~~~~^~~~~~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:248:10: note: candidate: ‘void sf::RenderTarget::draw(const sf::Vertex*, std::size_t, sf::PrimitiveType, const sf::RenderStates&)’
+  248 |     void draw(const Vertex* vertices, std::size_t vertexCount,
+      |          ^~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:248:10: note:   candidate expects 4 arguments, 1 provided
+/usr/include/SFML/Graphics/RenderTarget.hpp:258:10: note: candidate: ‘void sf::RenderTarget::draw(const sf::VertexBuffer&, const sf::RenderStates&)’
+  258 |     void draw(const VertexBuffer& vertexBuffer, const RenderStates& states = RenderStates::Default);
+      |          ^~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:258:35: note:   no known conversion for argument 1 from ‘sf::Texture’ to ‘const sf::VertexBuffer&’
+  258 |     void draw(const VertexBuffer& vertexBuffer, const RenderStates& states = RenderStates::Default);
+      |               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:269:10: note: candidate: ‘void sf::RenderTarget::draw(const sf::VertexBuffer&, std::size_t, std::size_t, const sf::RenderStates&)’
+  269 |     void draw(const VertexBuffer& vertexBuffer, std::size_t firstVertex, std::size_t vertexCount, const RenderStates& states = RenderStates::Default);
+      |          ^~~~
+/usr/include/SFML/Graphics/RenderTarget.hpp:269:10: note:   candidate expects 4 arguments, 1 provided
+make: *** [makefile:15: sprite.o] Error 1
+ubuntu@BCS-Ubuntu22-06:~/Desktop/cisp400/SpriteGame/SpriteGame-1$ 

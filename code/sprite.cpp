@@ -21,7 +21,7 @@ int main()
 	textureBackground.loadFromFile("mondt_theme.png");
 	cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
 
-    Informational infoBackground;
+    Texture infoBackground;
     infoBackground.loadFromFile("pink_blank.png");
     cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
 
@@ -69,7 +69,7 @@ int main()
     subText.setPosition(300, 400);
     subText.setString("Press any button to continue!");
 
-    //bool titleScreen = true;
+    bool titleScreen = true;
 
 	while (window.isOpen())
     {
@@ -120,7 +120,7 @@ int main()
         }
         else
         {
-        window.draw(infoBackground)
+        window.draw(infoBackground);
 
         window.close();
         }
@@ -154,9 +154,6 @@ int main()
 
 		// Show everything we just drew
 		window.display();
-
-
-	}
 
 	return 0;
 }
