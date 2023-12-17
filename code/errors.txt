@@ -1,14 +1,6 @@
-g++ -g -Wall -fpermissive -std=c++17 -c -o sprite.o code/sprite.cpp
-code/sprite.cpp: In function ‘int main()’:
-code/sprite.cpp:33:12: error: conflicting declaration ‘sf::Sprite infoBackground’
-   33 |     Sprite infoBackground;
-      |            ^~~~~~~~~~~~~~
-code/sprite.cpp:24:13: note: previous declaration as ‘sf::Texture infoBackground’
-   24 |     Texture infoBackground;
-      |             ^~~~~~~~~~~~~~
-code/sprite.cpp:127:20: error: no matching function for call to ‘sf::RenderWindow::draw(sf::Texture&)’
-  127 |         window.draw(infoBackground);
-      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~
+ode/sprite.cpp:127:20: error: no matching function for call to ‘sf::RenderWindow::draw(sf::Texture&)’
+  127 |         window.draw(textureInfoBackground);
+      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
 In file included from /usr/include/SFML/Graphics.hpp:45,
                  from code/sprite.cpp:2:
 /usr/include/SFML/Graphics/RenderTarget.hpp:237:10: note: candidate: ‘void sf::RenderTarget::draw(const sf::Drawable&, const sf::RenderStates&)’

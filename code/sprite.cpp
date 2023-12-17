@@ -21,18 +21,18 @@ int main()
 	textureBackground.loadFromFile("mondt_theme.png");
 	cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
 
-    Texture infoBackground;
-    infoBackground.loadFromFile("pink_blank.png");
-    cout << "Texture size: "<< infoBackground.getSize().x << " x " << infoBackground.getSize().y << " y " << endl;
+    Texture textureInfoBackground;
+    textureInfoBackground.loadFromFile("pink_blank.png");
+    //cout << "Texture size: "<< textureInfoBackground.getSize().x << " x " << textureInfoBackground.getSize().y << " y " << endl;
 
 	// Create a sprite
 	Sprite spriteBackground;
 	spriteBackground.setTexture(textureBackground);
 	spriteBackground.setPosition(0, 0);
 
-    Sprite infoBackground;
-    spriteBackground.setTexture(infoBackground);
-    cout << "Texture size: " << infoBackground.getSize().x << " x " << infoBackground.getSize().y << " y " << endl;
+    Sprite spriteInfoBackground;
+    spriteInfoBackground.setTexture(textureInfoBackground);
+    //cout << "Texture size: " << spriteInfoBackground.getSize().x << " x " << spriteInfoBackground.getSize().y << " y " << endl;
 
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
@@ -124,7 +124,7 @@ int main()
         }
         else
         {
-        window.draw(infoBackground);
+        window.draw(textureInfoBackground);
 
         window.close();
         }
