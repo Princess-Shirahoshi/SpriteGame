@@ -1,14 +1,33 @@
-g++ -g -Wall -fpermissive -std=c++17 -c -o main.o code/main.cpp
-g++ -g -Wall -fpermissive -std=c++17 -c -o sprite.o code/sprite.cpp
-code/sprite.cpp: In constructor ‘sf::Sprite::Sprite()’:
-code/sprite.cpp:10:20: error: class ‘sf::Sprite’ does not have any field named ‘s_Window’
-   10 | Sprite::Sprite() : s_Window(VideoMode(1920, 1080), "Flower Fields", Style::Default)
-      |                    ^~~~~~~~
-code/sprite.cpp:12:1: error: expected ‘{’ before ‘int’
-   12 | int main()
-      | ^~~
-code/sprite.cpp: In function ‘int main()’:
-code/sprite.cpp:33:5: error: ‘window’ was not declared in this scope
-   33 |     window.setView(view);
-      |     ^~~~~~
-make: *** [makefile:15: sprite.o] Error 1
+void Sprite::run()
+{
+    while (s_Window.isOpen())
+    {
+        Event event;
+        while (s_Window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                s_Window.close();
+            }
+            else if (event.type == Event::Resized)
+            {
+                // Adjust the view to maintain the correct aspect ratio
+                float aspectRatioWindow = static_cast<float>(event.size.width) / static_cast<float>(event.size.height);
+                float aspectRatioImage = static_cast<float>(textureBackground.getSize().x) / static_cast<float>(textureBackground.getSize().y);
+
+                if (aspectRatioWindow > aspectRatioImage)
+                {
+                    // Window is wider than the image, adjust height
+                    float newHeight = static_cast<float>(event.size.width) / aspectRatioImage;
+                    View view(FloatRect(0, 0, static_cast<float>(event.size.width), newHeight));
+                    s_Window.setView(view);
+                }
+                else
+                {
+                    // Window is taller than the image, adjust width
+                    float newWidth = static_cast<float>(event.size.height) * aspectRatioImage;
+                    View view(FloatRect(0, 0, newWidth, static_cast<float>(event.size.height)));
+                    s_Window.setView(view);
+                }
+            }
+        }
