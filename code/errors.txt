@@ -1,0 +1,21 @@
+++ -g -Wall -fpermissive -std=c++17 -c -o main.o code/main.cpp
+code/main.cpp: In function ‘int main()’:
+code/main.cpp:5:5: error: reference to ‘Sprite’ is ambiguous
+    5 |     Sprite sprite;
+      |     ^~~~~~
+In file included from /usr/include/SFML/Graphics.hpp:50,
+                 from code/sprite.h:2,
+                 from code/main.cpp:1:
+/usr/include/SFML/Graphics/Sprite.hpp:47:25: note: candidates are: ‘class sf::Sprite’
+   47 | class SFML_GRAPHICS_API Sprite : public Drawable, public Transformable
+      |                         ^~~~~~
+In file included from code/main.cpp:1:
+code/sprite.h:6:7: note:                 ‘class Sprite’
+    6 | class Sprite
+      |       ^~~~~~
+code/main.cpp:6:5: error: ‘sprite’ was not declared in this scope; did you mean ‘Sprite’?
+    6 |     sprite.run();
+      |     ^~~~~~
+      |     Sprite
+make: *** [makefile:15: main.o] Error 1
+ubuntu@BCS-Ubuntu22-14:~/Desktop/cisp400/SpriteGame$ 

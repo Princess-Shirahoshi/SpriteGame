@@ -7,7 +7,7 @@
 using namespace sf;
 using namespace std;
 
-Sprite::Sprite() s_Window(VideoMode(1920, 1080), "Flower Fields", Style::Default)
+Sprite::Sprite() : s_Window(VideoMode(1920, 1080), "Flower Fields", Style::Default)
 
 int main()
 {

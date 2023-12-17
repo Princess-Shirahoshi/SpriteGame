@@ -3,7 +3,7 @@
 int main()
 {
     Sprite sprite;
-    sprite.run;
+    sprite.run();
 
     return 0;
 }
