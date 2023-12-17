@@ -21,7 +21,16 @@ int main()
 
     RenderWindow window(vm, "Flower Fields", Style::Default);
 
-    
+    //Sprite here + Sprite stuffies so I don't get confused
+    Texture spriteSheet;
+    spriteSheet.loadFromFile("sscharacter.png");
+    IntRect sourceRect(0, 0, 750, 800);
+    Sprite sprite;
+    sprite.setTexture(spriteSheet);
+    sprite.setTextureRect(sourceRect);
+    //_______________________________________//
+
+    //Texture Backgrounds here    
     Texture textureBackground;
     textureBackground.loadFromFile("title.png");
 
@@ -31,6 +40,7 @@ int main()
     Texture textureGameBackground;
     textureGameBackground.loadFromFile("main.png");
 
+    //Sprite backgrounds here
     Sprite spriteBackground;
     spriteBackground.setTexture(textureBackground);
     spriteBackground.setPosition(0, 0);
@@ -40,6 +50,7 @@ int main()
 
     Sprite spriteMainBackground;
     spriteMainBackground.setTexture(textureGameBackground);
+    
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
     window.setView(view);
@@ -88,7 +99,7 @@ int main()
     //gameText.setString(""); // If I want to add text on the main flower scene
 
 
-    bool titleScreen = true;
+    //bool titleScreen = true;
 
     while (window.isOpen())
     {
@@ -153,6 +164,7 @@ int main()
         case GameState::Game:
             window.draw(spriteMainBackground);
             window.draw(gameText);
+            window.draw(sprite);
             break;
         }
 
