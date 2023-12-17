@@ -16,7 +16,7 @@ int main()
     textureBackground.loadFromFile("mondt_theme.png");
 
     Texture textureInfoBackground;
-    textureInfoBackground.loadFromFile("pink_blank.jpg");
+    textureInfoBackground.loadFromFile("main_background.png");
 
 
     Sprite spriteBackground;
@@ -57,7 +57,7 @@ int main()
     Text infoText;
     infoText.setFont(font);
     infoText.setCharacterSize(100);
-    infoText.setFillColor(Color(4, 55, 242));
+    infoText.setFillColor(Color(200, 100, 142));
     infoText.setOutlineColor(Color::White);
     infoText.setOutlineThickness(1);
     infoText.setPosition(700, 500);
