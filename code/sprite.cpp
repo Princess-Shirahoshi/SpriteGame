@@ -15,20 +15,24 @@ int main()
 	RenderWindow window(vm, "Flower Fields", Style::Default);
 
 	// Create a texture to hold a graphic on the GPU
-	Texture textureBackground;
-
-	// Load a graphic into the texture
+	
+    
+    Texture textureBackground;
 	textureBackground.loadFromFile("mondt_theme.png");
 	cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
 
     Texture infoBackground;
     infoBackground.loadFromFile("pink_blank.png");
-    cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
+    cout << "Texture size: "<< infoBackground.getSize().x << " x " << infoBackground.getSize().y << " y " << endl;
 
 	// Create a sprite
 	Sprite spriteBackground;
 	spriteBackground.setTexture(textureBackground);
 	spriteBackground.setPosition(0, 0);
+
+    Sprite infoBackground;
+    spriteBackground.setTexture(infoBackground);
+    cout << "Texture size: " << infoBackground.getSize().x << " x " << infoBackground.getSize().y << " y " << endl;
 
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
