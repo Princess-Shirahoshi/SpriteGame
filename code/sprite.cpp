@@ -4,6 +4,16 @@
 using namespace sf;
 using namespace std;
 
+
+enum GameState
+{
+    Title,
+    Info,
+    Game
+};
+
+GameState currentState = GameState::Title;
+
 int main()
 {
     
@@ -13,11 +23,13 @@ int main()
 
     
     Texture textureBackground;
-    textureBackground.loadFromFile("mondt_theme.png");
+    textureBackground.loadFromFile("title.png");
 
     Texture textureInfoBackground;
-    textureInfoBackground.loadFromFile("main_background.png");
+    textureInfoBackground.loadFromFile("info.jpg");
 
+    Texture textureGameBackground;
+    textureGameBackground.loadFromFile("main.png");
 
     Sprite spriteBackground;
     spriteBackground.setTexture(textureBackground);
@@ -25,6 +37,9 @@ int main()
 
     Sprite spriteInfoBackground;
     spriteInfoBackground.setTexture(textureInfoBackground);
+
+    Sprite spriteMainBackground;
+    spriteMainBackground.setTexture(textureGameBackground);
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
     window.setView(view);
@@ -57,11 +72,20 @@ int main()
     Text infoText;
     infoText.setFont(font);
     infoText.setCharacterSize(100);
-    infoText.setFillColor(Color(200, 100, 142));
+    infoText.setFillColor(Color(200, 100, 250));
     infoText.setOutlineColor(Color::White);
     infoText.setOutlineThickness(1);
     infoText.setPosition(700, 500);
-    infoText.setString("How to play: \n 1: Flowers will spawn \n 2. Walk over to the flowers to loot them \n 3. That is it!");
+    infoText.setString("How to play: \n 1: Flowers will spawn \n 2. Walk over to the flowers to loot them \n 3. Enjoy the flowers!");
+
+    Text gameText; 
+    gameText.setFont(font);
+    gameText.setCharacterSize(100);
+    gameText.setFillColor(Color::Green);
+    gameText.setOutlineColor(Color::White);
+    gameText.setOutlineThickness(1);
+    gameText.setPosition(500, 300);
+    //gameText.setString(""); // If I want to add text on the main flower scene
 
 
     bool titleScreen = true;
@@ -93,33 +117,46 @@ int main()
                     window.setView(view);
                 }
             }
-            else if (event.type == Event::KeyPressed)
+           else if (event.type == Event::KeyPressed)
             {
-                titleScreen = false;
+                // Transition to the next state when a key is pressed
+                switch (currentState)
+                {
+                case GameState::Title:
+                    currentState = GameState::Info;
+                    break;
+                case GameState::Info:
+                    currentState = GameState::Game;
+                    break;
+                case GameState::Game:
+                    break;
+                }
             }
         }
 
-        if (titleScreen)
-        {
-            window.clear();
+        window.clear();
 
-            // Title
+        // Draw elements based on the current state
+        switch (currentState)
+        {
+        case GameState::Title:
             window.draw(spriteBackground);
             window.draw(titleText);
             window.draw(subText);
+            break;
 
-            window.display();
-        }
-        else
-        {
-            window.clear();
-
+        case GameState::Info:
             window.draw(spriteInfoBackground);
             window.draw(infoText);
+            break;
 
-            window.display();
-
+        case GameState::Game:
+            window.draw(spriteMainBackground);
+            window.draw(gameText);
+            break;
         }
+
+        window.display();
     }
 
     return 0;
