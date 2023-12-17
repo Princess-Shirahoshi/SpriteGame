@@ -5,29 +5,23 @@ using namespace std;
 
 class Sprite
 {
-    private:
-        Font s_font;
+private:
+    RenderWindow s_Window;
+    Font s_font;
+    Text text;
+    Text titleText;
+    Text startText;
 
-        RenderWindow s_Window;
+    bool titleScreen;
+    bool infoScreen;
+    bool gameScreen;
 
-        Text text;
-        Text titleText;
-        Text startText;
+    Texture backgroundTexture;
+    Texture forest_texture;
+    Texture spring_texture;
+    Texture airy_texture;
 
-        bool titleScreen = true;
-        bool infoScreen = true;
-        bool gameScreen = true;
-
-        Texture backgroundTexture;
-        //Sprite backgroundSprite;
-
-        // Backgrounds
-
-        Texture forest_texture;
-        Texture spring_texture;
-        Texture airy_texture;
-
-    public:
-        Sprite();
-        void run();
+public:
+    Sprite();
+    void run();
 };
