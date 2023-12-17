@@ -3,7 +3,9 @@
 int main()
 {
     Sprite sprite;
-    sprite.run();
+
+    // Not incorpated yet 
+    //sprite.run();
 
     return 0;
 }

@@ -3,25 +3,28 @@
 using namespace sf;
 using namespace std;
 
-class Sprite
+namespace game 
 {
+class Sprite
+	{
 private:
-    RenderWindow s_Window;
-    Font s_font;
-    Text text;
-    Text titleText;
-    Text startText;
+	RenderWindow s_Window;
+	Font s_font;
+	Text text;
+	Text titleText;
+	Text startText;
 
-    bool titleScreen;
-    bool infoScreen;
-    bool gameScreen;
+	bool titleScreen;
+	bool infoScreen;
+	bool gameScreen;
 
-    Texture backgroundTexture;
-    Texture forest_texture;
-    Texture spring_texture;
-    Texture airy_texture;
+	Texture backgroundTexture;
+	Texture forest_texture;
+	Texture spring_texture;
+	Texture airy_texture;
 
 public:
-    Sprite();
-    void run();
-};
+	Sprite();
+	void run();
+	};
+}
