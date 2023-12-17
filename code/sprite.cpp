@@ -1,70 +1,51 @@
-// Include important C++ libraries here
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "sprite.h"
-
 
 using namespace sf;
 using namespace std;
 
 int main()
 {
-	// Create a video mode object
-	VideoMode vm(1920, 1080);
+    
+    VideoMode vm(1920, 1080);
 
-	RenderWindow window(vm, "Flower Fields", Style::Default);
+    RenderWindow window(vm, "Flower Fields", Style::Default);
 
-	// Create a texture to hold a graphic on the GPU
-	
     
     Texture textureBackground;
-	textureBackground.loadFromFile("mondt_theme.png");
-	cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
+    textureBackground.loadFromFile("mondt_theme.png");
 
     Texture textureInfoBackground;
-    textureInfoBackground.loadFromFile("pink_blank.png");
-    //cout << "Texture size: "<< textureInfoBackground.getSize().x << " x " << textureInfoBackground.getSize().y << " y " << endl;
+    textureInfoBackground.loadFromFile("pink_blank.jpg");
 
-	// Create a sprite
-	Sprite spriteBackground;
-	spriteBackground.setTexture(textureBackground);
-	spriteBackground.setPosition(0, 0);
+
+    Sprite spriteBackground;
+    spriteBackground.setTexture(textureBackground);
+    spriteBackground.setPosition(0, 0);
 
     Sprite spriteInfoBackground;
     spriteInfoBackground.setTexture(textureInfoBackground);
-    //cout << "Texture size: " << spriteInfoBackground.getSize().x << " x " << spriteInfoBackground.getSize().y << " y " << endl;
-
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
     window.setView(view);
 
-	 Font font;
-    if (!font.loadFromFile("Pacifico.ttf")) 
+    Font font;
+    if (!font.loadFromFile("Pacifico.ttf"))
     {
-        // Displays message to user if font doesn't load
         cout << "Error loading font!" << endl;
-        // returns error and exits program
         return -1;
     }
 
-	Text text;
-	text.setFont(font);
-	text.setCharacterSize(60);
-	text.setString("Flower Fields");
-	text.setPosition(10, 10);
-
-	Text titleText;
-    
+    Text titleText;
     titleText.setFont(font);
     titleText.setCharacterSize(250);
     titleText.setFillColor(Color(238, 130, 180));
     titleText.setOutlineColor(Color::White);
     titleText.setOutlineThickness(2);
     titleText.setPosition(150, 140);
-    titleText.setString("Flower Fields"); //Adds title screen 
+    titleText.setString("Flower Fields");
 
     Text subText;
-
     subText.setFont(font);
     subText.setCharacterSize(100);
     subText.setFillColor(Color(252, 137, 172));
@@ -73,9 +54,19 @@ int main()
     subText.setPosition(300, 400);
     subText.setString("Press any button to continue!");
 
+    Text infoText;
+    infoText.setFont(font);
+    infoText.setCharacterSize(100);
+    infoText.setFillColor(Color(0, 0, 139));
+    infoText.setOutlineColor(Color::White);
+    infoText.setOutlineThickness(1);
+    infoText.setPosition(700, 500);
+    infoText.setString("How to play: \n 1: Flowers will spawn \n 2. Walk over to the flowers to loot them \n 3. That is it!");
+
+
     bool titleScreen = true;
 
-	while (window.isOpen())
+    while (window.isOpen())
     {
         Event event;
         while (window.pollEvent(event))
@@ -102,7 +93,6 @@ int main()
                     window.setView(view);
                 }
             }
-
             else if (event.type == Event::KeyPressed)
             {
                 titleScreen = false;
@@ -111,53 +101,26 @@ int main()
 
         if (titleScreen)
         {
-        // Clear everything from the last frame
-        window.clear();
+            window.clear();
 
-        // Draw our title screen here
-        window.draw(spriteBackground);
-        window.draw(titleText);
-        window.draw(subText);
+            // Title
+            window.draw(spriteBackground);
+            window.draw(titleText);
+            window.draw(subText);
 
-        // Show everything we just drew
-        window.display();
+            window.display();
         }
         else
         {
-        window.draw(textureInfoBackground);
+            window.clear();
 
-        window.close();
+            window.draw(spriteInfoBackground);
+            window.draw(infoText);
+
+            window.display();
+
         }
-        }
+    }
 
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
-		{
-			window.close();
-		}
-
-		/*
-		****************************************
-		Update the scene
-		****************************************
-		*/
-
-
-		/*
-		****************************************
-		Draw the scene
-		****************************************
-		*/
-
-		// Clear everything from the last frame
-		window.clear();
-
-		// Draw our game scene here
-		window.draw(spriteBackground);
-		window.draw(titleText);
-        window.draw(subText);
-
-		// Show everything we just drew
-		window.display();
-
-	return 0;
+    return 0;
 }
