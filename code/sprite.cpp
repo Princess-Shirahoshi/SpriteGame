@@ -55,6 +55,17 @@ int main()
     titleText.setPosition(150, 140);
     titleText.setString("Flower Fields"); //Adds title screen 
 
+    Text subText;
+
+    subText.setFont(font);
+    subText.setCharacterSize(100);
+    subText.setFillColor(Color(252, 137, 172));
+    subText.setOutlineColor(Color::White);
+    subText.setOutlineThickness(1);
+    subText.setPosition(300, 400);
+    subText.setString("Press any button to continue!");
+
+    bool titleScreen = true;
 
 	while (window.isOpen())
     {
@@ -67,20 +78,17 @@ int main()
             }
             else if (event.type == Event::Resized)
             {
-                // Adjust the view to maintain the correct aspect ratio
                 float aspectRatioWindow = static_cast<float>(event.size.width) / static_cast<float>(event.size.height);
                 float aspectRatioImage = static_cast<float>(textureBackground.getSize().x) / static_cast<float>(textureBackground.getSize().y);
 
                 if (aspectRatioWindow > aspectRatioImage)
                 {
-                    // Window is wider than the image, adjust height
                     float newHeight = static_cast<float>(event.size.width) / aspectRatioImage;
                     View view(FloatRect(0, 0, static_cast<float>(event.size.width), newHeight));
                     window.setView(view);
                 }
                 else
                 {
-                    // Window is taller than the image, adjust width
                     float newWidth = static_cast<float>(event.size.height) * aspectRatioImage;
                     View view(FloatRect(0, 0, newWidth, static_cast<float>(event.size.height)));
                     window.setView(view);
@@ -112,6 +120,7 @@ int main()
 		// Draw our game scene here
 		window.draw(spriteBackground);
 		window.draw(titleText);
+        window.draw(subText);
 
 		// Show everything we just drew
 		window.display();
