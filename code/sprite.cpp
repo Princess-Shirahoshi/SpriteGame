@@ -18,7 +18,7 @@ int main()
 	Texture textureBackground;
 
 	// Load a graphic into the texture
-	textureBackground.loadFromFile("forest_background.png");
+	textureBackground.loadFromFile("mondt_theme.png");
 
 	// Create a sprite
 	Sprite spriteBackground;
