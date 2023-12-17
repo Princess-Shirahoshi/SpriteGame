@@ -21,6 +21,10 @@ int main()
 	textureBackground.loadFromFile("mondt_theme.png");
 	cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
 
+    Informational infoBackground;
+    infoBackground.loadFromFile("pink_blank.png");
+    cout << "Texture size: "<< textureBackground.getSize().x << " x " << textureBackground.getSize().y << " y " << endl;
+
 	// Create a sprite
 	Sprite spriteBackground;
 	spriteBackground.setTexture(textureBackground);
@@ -94,6 +98,32 @@ int main()
                     window.setView(view);
                 }
             }
+
+            else if (event.type == Event::KeyPressed)
+            {
+                titleScreen = false;
+            }
+        }
+
+        if (titleScreen)
+        {
+        // Clear everything from the last frame
+        window.clear();
+
+        // Draw our title screen here
+        window.draw(spriteBackground);
+        window.draw(titleText);
+        window.draw(subText);
+
+        // Show everything we just drew
+        window.display();
+        }
+        else
+        {
+        window.draw(infoBackground)
+
+        window.close();
+        }
         }
 
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
