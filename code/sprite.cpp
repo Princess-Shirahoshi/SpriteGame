@@ -29,6 +29,31 @@ int main()
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
     window.setView(view);
 
+	 Font font;
+    if (!font.loadFromFile("Pacifico.ttf")) 
+    {
+        // Displays message to user if font doesn't load
+        cout << "Error loading font!" << endl;
+        // returns error and exits program
+        return -1;
+    }
+
+	Text text;
+	text.setFont(font);
+	text.setCharacterSize(60);
+	text.setString("Flower Fields");
+	text.setPosition(10, 10);
+
+	Text titleText;
+    
+    titleText.setFont(font);
+    titleText.setCharacterSize(250);
+    titleText.setFillColor(Color(238, 130, 180));
+    titleText.setOutlineColor(Color::White);
+    titleText.setOutlineThickness(2);
+    titleText.setPosition(150, 140);
+    titleText.setString("Flower Fields"); //Adds title screen 
+
 
 	while (window.isOpen())
     {
@@ -85,6 +110,7 @@ int main()
 
 		// Draw our game scene here
 		window.draw(spriteBackground);
+		window.draw(titleText);
 
 		// Show everything we just drew
 		window.display();
