@@ -16,6 +16,7 @@ class Sprite
 
         bool titleScreen = true;
         bool infoScreen = true;
+        bool gameScreen = true;
 
         Texture backgroundTexture;
         Sprite backgroundSprite;
