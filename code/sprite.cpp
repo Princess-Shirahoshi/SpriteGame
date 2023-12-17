@@ -7,16 +7,11 @@
 using namespace sf;
 using namespace std;
 
+
+namespace game {
 Sprite::Sprite() : s_Window(VideoMode(1920, 1080), "Flower Fields", Style::Default)
-
-int main()
 {
-	// Create a video mode object
-	//VideoMode vm(1920, 1080);
 
-	//RenderWindow window(vm, "Flower Fields", Style::Default);
-
-	// Create a texture to hold a graphic on the GPU
 	Texture textureBackground;
 
 	// Load a graphic into the texture
@@ -25,12 +20,12 @@ int main()
 
 	// Create a sprite
 	Sprite spriteBackground;
-	spriteBackground.setTexture(textureBackground);
-	spriteBackground.setPosition(0, 0);
+	//spriteBackground.setTexture(textureBackground);
+	//spriteBackground.setPosition(0, 0);
 
 
     View view(FloatRect(0, 0, static_cast<float>(textureBackground.getSize().x), static_cast<float>(textureBackground.getSize().y)));
-    window.setView(view);
+    s_Window.setView(view);
 
 	 Font font;
     if (!font.loadFromFile("Pacifico.ttf")) 
@@ -38,7 +33,6 @@ int main()
         // Displays message to user if font domesn't load
         cout << "Error loading font!" << endl;
         // returns error and exits program
-        return -1;
     }
 
 	Text text;
@@ -56,16 +50,18 @@ int main()
     titleText.setOutlineThickness(2);
     titleText.setPosition(150, 140);
     titleText.setString("Flower Fields"); //Adds title screen 
+}
 
-
-	while (window.isOpen())
+void input()
+{
+	while (s_Window.isOpen())
     {
         Event event;
-        while (window.pollEvent(event))
+        while (s_Window.pollEvent(event))
         {
             if (event.type == Event::Closed)
             {
-                window.close();
+                s_Window.close();
             }
             else if (event.type == Event::Resized)
             {
@@ -78,17 +74,19 @@ int main()
                     // Window is wider than the image, adjust height
                     float newHeight = static_cast<float>(event.size.width) / aspectRatioImage;
                     View view(FloatRect(0, 0, static_cast<float>(event.size.width), newHeight));
-                    window.setView(view);
+                    s_Window.setView(view);
                 }
                 else
                 {
                     // Window is taller than the image, adjust width
                     float newWidth = static_cast<float>(event.size.height) * aspectRatioImage;
                     View view(FloatRect(0, 0, newWidth, static_cast<float>(event.size.height)));
-                    window.setView(view);
+                    s_Window.setView(view);
                 }
             }
         }
+    }
+}
 
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
@@ -109,17 +107,15 @@ int main()
 		*/
 
 		// Clear everything from the last frame
-		window.clear();
+		s_Window.clear();
 
 		// Draw our game scene here
-		window.draw(spriteBackground);
-		window.draw(titleText);
+		s_Window.draw(spriteBackground);
+		s_Window.draw(titleText);
 
 		// Show everything we just drew
-		window.display();
+		s_Window.display();
 
 
 	}
-
-	return 0;
 }
