@@ -1,7 +1,7 @@
 // Include important C++ libraries here
 #include <SFML/Graphics.hpp>
 #include <iostream>
-//#include "sprite.h"
+#include "sprite.h"
 
 
 using namespace sf;
@@ -65,7 +65,7 @@ int main()
     subText.setPosition(300, 400);
     subText.setString("Press any button to continue!");
 
-    bool titleScreen = true;
+    //bool titleScreen = true;
 
 	while (window.isOpen())
     {

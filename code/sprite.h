@@ -15,6 +15,8 @@ private:
 	Text startText;
 
 	void input();
+	void update();
+	void draw();
 
 	bool titleScreen;
 	bool infoScreen;
