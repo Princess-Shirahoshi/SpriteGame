@@ -57,7 +57,7 @@ int main()
     Text infoText;
     infoText.setFont(font);
     infoText.setCharacterSize(100);
-    infoText.setFillColor(Color(0, 0, 139));
+    infoText.setFillColor(Color(4, 55, 242));
     infoText.setOutlineColor(Color::White);
     infoText.setOutlineThickness(1);
     infoText.setPosition(700, 500);
