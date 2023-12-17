@@ -19,7 +19,7 @@ class Sprite
         bool gameScreen = true;
 
         Texture backgroundTexture;
-        Sprite backgroundSprite;
+        //Sprite backgroundSprite;
 
         // Backgrounds
 
@@ -29,4 +29,5 @@ class Sprite
 
     public:
         Sprite();
-}
+        void run();
+};

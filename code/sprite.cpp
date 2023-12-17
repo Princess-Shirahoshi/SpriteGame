@@ -1,17 +1,20 @@
 // Include important C++ libraries here
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "sprite.h"
 
 
 using namespace sf;
 using namespace std;
 
+Sprite::Sprite() s_Window(VideoMode(1920, 1080), "Flower Fields", Style::Default)
+
 int main()
 {
 	// Create a video mode object
-	VideoMode vm(1920, 1080);
+	//VideoMode vm(1920, 1080);
 
-	RenderWindow window(vm, "Flower Fields", Style::Default);
+	//RenderWindow window(vm, "Flower Fields", Style::Default);
 
 	// Create a texture to hold a graphic on the GPU
 	Texture textureBackground;
@@ -32,7 +35,7 @@ int main()
 	 Font font;
     if (!font.loadFromFile("Pacifico.ttf")) 
     {
-        // Displays message to user if font doesn't load
+        // Displays message to user if font domesn't load
         cout << "Error loading font!" << endl;
         // returns error and exits program
         return -1;
