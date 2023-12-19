@@ -28,8 +28,8 @@ int main()
     Sprite sprite;
     sprite.setTexture(spriteSheet);
     sprite.setTextureRect(sourceRect);
-    sprite.setPosition(window.getSize().x / 2 - sprite.getLocalBounds().width / 2,
-                       window.getSize().y / 2 - sprite.getLocalBounds().height / 2);
+    sprite.setPosition((window.getSize().x - sprite.getLocalBounds().width) / 2,
+                   (window.getSize().y - sprite.getLocalBounds().height) / 2 + 600);
     //_______________________________________//
 
     //Texture Backgrounds here    
