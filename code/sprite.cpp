@@ -132,7 +132,7 @@ int main()
             }
            else if (event.type == Event::KeyPressed)
             {
-                // Transition to the next state when a key is pressed
+            
                 switch (currentState)
                 {
                 case GameState::Title:
@@ -149,7 +149,7 @@ int main()
 
         window.clear();
 
-        // Draw elements based on the current state
+
         switch (currentState)
         {
         case GameState::Title:
@@ -167,7 +167,32 @@ int main()
             window.draw(spriteMainBackground);
             window.draw(gameText);
             window.draw(sprite);
+
+            Vector2f spritePosition = sprite.getPosition();
+
+
+            float movementSpeed = 5.0f;
+
+            while (currentState == GameState::Game)
+            {
+            if (Keyboard::isKeyPressed(Keyboard::A))
+            {   
+                int xTexture = 0;
+                xTexture = sprite.getPosition().x;
+                IntRect sourceRect(xTexture, 137, 130, 118);
+                spritePosition.x -= movementSpeed;
+            }
+
+            if (Keyboard::isKeyPressed(Keyboard::D))
+            {
+                IntRect sourRect(10, 260, 130, 118 );
+                spritePosition.x += movementSpeed;
+            }
+
+            sprite.setPosition(spritePosition);
+
             break;
+            }
         }
  
         window.display();
