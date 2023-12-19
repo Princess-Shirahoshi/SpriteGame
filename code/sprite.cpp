@@ -23,11 +23,13 @@ int main()
 
     //Sprite here + Sprite stuffies so I don't get confused
     Texture spriteSheet;
-    spriteSheet.loadFromFile("sscharacter.png");
-    IntRect sourceRect(0, 0, 750, 800);
+    spriteSheet.loadFromFile("test_sheet.png");
+    IntRect sourceRect(0, 137, 130, 118);
     Sprite sprite;
     sprite.setTexture(spriteSheet);
     sprite.setTextureRect(sourceRect);
+    sprite.setPosition(window.getSize().x / 2 - sprite.getLocalBounds().width / 2,
+                       window.getSize().y / 2 - sprite.getLocalBounds().height / 2);
     //_______________________________________//
 
     //Texture Backgrounds here    
@@ -167,7 +169,7 @@ int main()
             window.draw(sprite);
             break;
         }
-
+ 
         window.display();
     }
 
