@@ -24,13 +24,43 @@ int main()
     //Sprite here + Sprite stuffies so I don't get confused
     Texture spriteSheet;
     spriteSheet.loadFromFile("test_sprite_sheet.png");
-    IntRect sourceRect(150, 1000, 150, 415);
+    
+    IntRect sourceRectLeft(150, 1475, 150, 415);
+    IntRect sourceRectRight(150, 1000, 150, 415);
+    IntRect sourceRect = sourceRectRight;
     Sprite sprite;
     sprite.setTexture(spriteSheet);
     sprite.setTextureRect(sourceRect);
     sprite.setPosition((window.getSize().x - sprite.getLocalBounds().width) / 2,
                    (window.getSize().y - sprite.getLocalBounds().height) / 2 + 600);
+    //float movementSpeed = 5.0f;
     //_______________________________________//
+
+
+
+
+    // Flowers here 
+    Texture flowerOverlayTexture;
+    flowerOverlayTexture.loadFromFile("spritesheet_flowers.png"); 
+
+    IntRect sourceFlowerLeft(170, 5762, 670, 938);
+    //IntRect sourceRectRight(150, 1000, 150, 415);
+    //Sprite leftFlowerOverlay;
+    //Sprite rightFlowerOverlay;
+    
+    //leftFlowerOverlay.setTexture(flowerOverlayTexture);
+    //rightFlowerOverlay.setTexture(flowerOverlayTexture);
+    Sprite flower;
+    flower.setTexture(flowerOverlayTexture);
+    flower.setTextureRect(sourceFlowerLeft);
+    flower.setPosition((window.getSize().x - flower.getLocalBounds().width) / 2 + 800,
+                   (window.getSize().y - flower.getLocalBounds().height) / 2 + 350);
+    
+
+    Texture flowerTexture;
+    
+
+    //___________________________________________//
 
     //Texture Backgrounds here    
     Texture textureBackground;
@@ -103,6 +133,8 @@ int main()
 
     //bool titleScreen = true;
 
+
+
     while (window.isOpen())
     {
         Event event;
@@ -164,19 +196,18 @@ int main()
             break;
 
         case GameState::Game:
-            window.draw(spriteMainBackground);
+             window.draw(spriteMainBackground);
             window.draw(gameText);
             window.draw(sprite);
 
+
+            window.draw(flower);
+
             Vector2f spritePosition = sprite.getPosition();
-
-
             float movementSpeed = 5.0f;
 
-            while (currentState == GameState::Game)
-            {
             if (Keyboard::isKeyPressed(Keyboard::A))
-            {   
+            {
                 int xTexture = 0;
                 xTexture = sprite.getPosition().x;
                 IntRect sourceRect(xTexture, 137, 130, 118);
@@ -185,14 +216,13 @@ int main()
 
             if (Keyboard::isKeyPressed(Keyboard::D))
             {
-                IntRect sourRect(10, 260, 130, 118 );
+                IntRect sourRect(10, 260, 130, 118);
                 spritePosition.x += movementSpeed;
             }
 
             sprite.setPosition(spritePosition);
 
             break;
-            }
         }
  
         window.display();
