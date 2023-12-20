@@ -23,8 +23,8 @@ int main()
 
     //Sprite here + Sprite stuffies so I don't get confused
     Texture spriteSheet;
-    spriteSheet.loadFromFile("test_sheet.png");
-    IntRect sourceRect(0, 137, 130, 118);
+    spriteSheet.loadFromFile("test_sprite_sheet.png");
+    IntRect sourceRect(150, 1000, 150, 415);
     Sprite sprite;
     sprite.setTexture(spriteSheet);
     sprite.setTextureRect(sourceRect);
