@@ -40,19 +40,14 @@ int main()
 
 
     // Flowers here 
-    Texture flowerOverlayTexture;
-    flowerOverlayTexture.loadFromFile("spritesheet_flowers.png"); 
+    Texture flowerSheet;
+    flowerSheet.loadFromFile("spritesheet_flowers.png"); 
 
-    IntRect sourceFlowerLeft(170, 5762, 670, 938);
-    //IntRect sourceRectRight(150, 1000, 150, 415);
-    //Sprite leftFlowerOverlay;
-    //Sprite rightFlowerOverlay;
-    
-    //leftFlowerOverlay.setTexture(flowerOverlayTexture);
-    //rightFlowerOverlay.setTexture(flowerOverlayTexture);
+    IntRect flowerSpawn(170, 5762, 670, 938);
+
     Sprite flower;
-    flower.setTexture(flowerOverlayTexture);
-    flower.setTextureRect(sourceFlowerLeft);
+    flower.setTexture(flowerSheet);
+    flower.setTextureRect(flowerSpawn);
     flower.setPosition((window.getSize().x - flower.getLocalBounds().width) / 2 + 800,
                    (window.getSize().y - flower.getLocalBounds().height) / 2 + 350);
     
@@ -119,7 +114,7 @@ int main()
     infoText.setOutlineColor(Color::White);
     infoText.setOutlineThickness(1);
     infoText.setPosition(700, 500);
-    infoText.setString("How to play: \n 1: Flowers will spawn \n 2. Walk over to the flowers to loot them \n 3. Enjoy the flowers!");
+    infoText.setString("How to play: \n 1: Flowers will spawn \n 2. Walk over to the flowers! \n 3. Enjoy the flowers!");
 
     Text gameText; 
     gameText.setFont(font);
@@ -196,7 +191,7 @@ int main()
             break;
 
         case GameState::Game:
-             window.draw(spriteMainBackground);
+            window.draw(spriteMainBackground);
             window.draw(gameText);
             window.draw(sprite);
 
@@ -208,15 +203,14 @@ int main()
 
             if (Keyboard::isKeyPressed(Keyboard::A))
             {
-                int xTexture = 0;
-                xTexture = sprite.getPosition().x;
-                IntRect sourceRect(xTexture, 137, 130, 118);
+
+                IntRect sourceRect(sourceRectLeft);
                 spritePosition.x -= movementSpeed;
             }
 
             if (Keyboard::isKeyPressed(Keyboard::D))
             {
-                IntRect sourRect(10, 260, 130, 118);
+                IntRect sourRect(sourceRectRight);
                 spritePosition.x += movementSpeed;
             }
 
